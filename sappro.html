@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telugu Mood Songs</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: url('music.pro.jpg') no-repeat center center/cover;
+            color: #fff;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 50px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #ff6f61;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #ff4136;
+        }
+        .hidden { display: none; }
+        iframe {
+            width: 80%;
+            height: 250px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        /* Falling Flowers Animation */
+        .flowers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .flower {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: url('musical-notes.png') no-repeat center/cover;
+            opacity: 0.9;
+            animation: fall linear infinite;
+        }
+
+        /* Randomizing the Fall Effect */
+        .flower:nth-child(1) { left: 10%; animation-duration: 6s; animation-delay: 0s; }
+        .flower:nth-child(2) { left: 20%; animation-duration: 7s; animation-delay: 2s; }
+        .flower:nth-child(3) { left: 30%; animation-duration: 5s; animation-delay: 4s; }
+        .flower:nth-child(4) { left: 40%; animation-duration: 8s; animation-delay: 1s; }
+        .flower:nth-child(5) { left: 50%; animation-duration: 6s; animation-delay: 3s; }
+        .flower:nth-child(6) { left: 60%; animation-duration: 7s; animation-delay: 5s; }
+        .flower:nth-child(7) { left: 70%; animation-duration: 5s; animation-delay: 2s; }
+        .flower:nth-child(8) { left: 80%; animation-duration: 9s; animation-delay: 0s; }
+        .flower:nth-child(9) { left: 90%; animation-duration: 6s; animation-delay: 3s; }
+        .flower:nth-child(10) { left: 95%; animation-duration: 8s; animation-delay: 1s; }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="musicalNotes">
+        <div class="musicalNote"></div>
+        <div class="musicalNote"></div>
+        <div class="musicalNote"></div>
+        <div class="musicalNote"></div>
+        <div class="musicalNote"></div>
+        <div class="musicalNote"></div>
+        <div class="musicalNote"></div>
+        <div class="musicalNote"></div>
+        <div class="musicalNote"></div>
+        <div class="musicalNote"></div>
+    </div>
+    
+    <h1><mark>Heii ppl, Welcome! Let's Listen Songs🎶</mark></h1>
+    <div class="container">
+        <button id="listenBtn">Listen</button>
+        <div id="genreSelection" class="hidden">
+            <button onclick="showSongs('happy')">Happy 😊</button>
+            <button onclick="showSongs('sad')">Sad 😢</button>
+            <button onclick="showSongs('energetic')">Energetic 🔥</button>
+            <button onclick="showSongs('relaxing')">Relaxing 😌</button>
+            <button onclick="showSongs('romantic')">Romantic 💖</button>
+        </div>
+        <div id="songsList" class="hidden"></div>
+    </div>
+
+    <script>
+        document.getElementById('listenBtn').addEventListener('click', function() {
+            document.getElementById('genreSelection').classList.remove('hidden');
+        });
+
+        const songData = {
+            happy: [
+                { name: "Nee Kannu Neeli Samudhram", url: "https://youtu.be/mrqgz4_a4PU?feature=shared" },
+                { name: "Chusi Chudangane", url: "https://youtu.be/_JVghQCWnRI?feature=shared" },
+                { name: "Kanulanu Thaake", url: "https://youtu.be/30Bjg_7KuoE?feature=shared" }
+            ],
+            
+            sad: [
+                { name: "Nammaka Thappani", url: "https://youtu.be/OpNrsHEWfjE?feature=shared" },
+                { name: "Adiga Adiga", url: "https://youtu.be/hJ4OL9NNeDY?feature=shared" },
+                { name: "Emaipoyave", url: "https://youtu.be/Eyx0Hvi1_Ng?feature=shared" }
+            ],
+            energetic: [
+                { name: "Rowdy Baby", url: "https://youtu.be/yUoC5stm05o?feature=shared" },
+                { name: "Dimaak Kharaab", url: "https://youtu.be/V5c4BnmPTpU?feature=shared" },
+                { name: "Reddy Ikkada Soodu", url: "https://youtu.be/pKguNINOFGM?feature=shared" }
+            ],
+            relaxing: [
+                { name: "Samajavaragamana", url: "https://youtu.be/tflQ33g6I8I?feature=shared" },
+                { name: "Vinnane Vinnane", url: "https://youtu.be/J2whskXsZe8?feature=shared" },
+                { name: "Prema Velluva", url: "https://youtu.be/rslYbT2GvRs?feature=shared" }
+            ],
+            romantic: [
+                { name: "Urike Urike", url: "https://youtu.be/A3Im3P0--aE?feature=shared" },
+                { name: "Mellaga Karagani", url: "https://youtu.be/TBX-PJyifts?feature=shared" },
+                { name: "Undiporaadhey", url: "https://youtu.be/jlmyZ_x5vjc?feature=shared" }
+            ]
+        };
+
+        function showSongs(mood) {
+            let songListDiv = document.getElementById('songsList');
+            songListDiv.innerHTML = "";
+            songData[mood].forEach(song => {
+                let songItem = document.createElement('div');
+                songItem.innerHTML = `<p>${song.name}</p><button onclick="playSong('${song.url}')">Play Song</button>`;
+                songListDiv.appendChild(songItem);
+            });
+            songListDiv.classList.remove('hidden');
+        }
+
+        function playSong(url) {
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
